@@ -27,6 +27,7 @@ public class PostgresPracticeRestController {
 	
 	@PostMapping("/create/user")
 	public void createUser(@RequestBody PostgresPracticeUser user) {
+		
 		repository.insertUser(user.getUserId(), user.getUserName());
 	}
 }
