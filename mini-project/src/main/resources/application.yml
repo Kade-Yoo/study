@@ -1,7 +1,5 @@
-server:  port: 8080# postgres 설정spring:  datasource:    url: jdbc:postgres://localhost:5432/postgres    username: postgres    password: etoos12   # hibernate default none처리  jpa:    generate-ddl: true    show-sql: true    database: POSTGRESQL    hibernate:      ddl-auto: create    properties:      hibernate:        jdbc:          lob:            non_contextual_create: true# jsp 설정  mvc:    view:      prefix: /WEB-INF/jsp/      suffix: .jsp
-
-# jdbc 자동 설정 exclude
-#spring:
+server:  port: 8080# postgres 설정spring:  datasource:    driver-class-name: org.postgresql.Driver    url: jdbc:postgresql://localhost:5432/postgres    username: postgres    password: etoos12   # hibernate default none처리  jpa:    generate-ddl: true    show-sql: true    database: POSTGRESQL    hibernate:      ddl-auto: create    properties:      hibernate:        jdbc:          lob:            non_contextual_create: true# jsp 설정#  mvc:#    view:#      prefix: /WEB-INF/jsp/#      suffix: .jsp
+  main:    allow-bean-definition-overriding: true    # jdbc 자동 설정 exclude
 #  autoconfigure:
 #    exclude:
 #    - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
