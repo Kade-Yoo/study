@@ -4,30 +4,36 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.mini.model.PostgresPracticeUser;
-import com.example.mini.repository.PostgresPracticeRepository;
+import com.example.mini.service.PostgresPracticeService;
+
+import javassist.NotFoundException;
 
 @RestController
-@RequestMapping("/practice")
+@RequestMapping("/api/v1")
 public class PostgresPracticeRestController {
 	
 	@Autowired
-	private PostgresPracticeRepository repository;
+	private PostgresPracticeService service;
 	
-	@GetMapping("/users")
-	public List<String> getUsers() {
-		return repository.selectUsers();
+	@PostMapping("/create/user/")
+	public PostgresPracticeUser createUser(@RequestBody PostgresPracticeUser user) {
+		return service.createUser(user);
 	}
 	
-	@PostMapping("/create/user")
-	public void createUser(@RequestBody PostgresPracticeUser user) {
-		
-		repository.insertUser(user.getUserId(), user.getUserName());
+	@GetMapping("/get/user/{id}")
+	public PostgresPracticeUser getUser(@PathVariable(value = "id") Long userId) throws NotFoundException {
+		return service.getUser(userId);
+	}
+	
+	@GetMapping("/get/users")
+	public List<PostgresPracticeUser> getUsers() {
+		return service.getUsers();
 	}
 }

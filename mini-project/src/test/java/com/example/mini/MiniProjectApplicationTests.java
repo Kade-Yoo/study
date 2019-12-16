@@ -7,25 +7,21 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.example.mini.controller.PostgresPracticeRestController;
 import com.example.mini.model.PostgresPracticeUser;
+import com.example.mini.repository.PostgresPracticeRepository;
+import com.example.mini.service.PostgresPracticeService;
+import com.example.mini.service.impl.PostgresPracticeServiceImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import lombok.extern.slf4j.Slf4j;
 
 // SpringBootTest와 DataJpaTest를 같이 사용할 수 없음....
 //@SpringBootTest
@@ -34,9 +30,12 @@ import lombok.extern.slf4j.Slf4j;
 //@DataJpaTest
 @ExtendWith(SpringExtension.class)
 //@AutoConfigureTestDatabase(replace = Replace.NONE)
-@Slf4j
 // Web Mvc 환경에서 Test 할 수 있도록함
-@WebMvcTest(PostgresPracticeRestController.class)
+@WebMvcTest({PostgresPracticeRestController.class
+			, PostgresPracticeRepository.class
+			, PostgresPracticeService.class
+			, PostgresPracticeServiceImpl.class})
+
 class MiniProjectApplicationTests {
 //	@Autowired
 //	PostgresPracticeRepository repository;
@@ -72,7 +71,6 @@ class MiniProjectApplicationTests {
 	
 	@Test
 	void jpa_practice02() throws JsonProcessingException, Exception {
-		
 		// MockMvc Mvc 환경을 재현
 		// MockMvcRequestBuilders란 요청 데이터를 설정한다.
 		// post(url) post형식으로 요청
