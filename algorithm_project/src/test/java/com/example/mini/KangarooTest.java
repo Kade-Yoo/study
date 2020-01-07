@@ -5,13 +5,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.example.kangaroo.service.impl.KangarooServiceImpl;
+
 @SpringBootTest
 public class KangarooTest {
 	
-	private JumpingKangaroo jumpingKangaroo = new JumpingKangaroo();
+	private KangarooServiceImpl jumpingKangaroo = new KangarooServiceImpl();
 	
 	@Test
 	void solve() {
-		assertThat(jumpingKangaroo.jumpOnTheGround(0, 3, 4, 2)).isEqualTo("YES");
+		assertThat(jumpingKangaroo.jumpKangaroo(firstKangaroo, secondKangaroo)).isEqualTo("YES");
 	}
 }
