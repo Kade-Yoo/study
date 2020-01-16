@@ -8,9 +8,9 @@ public class ProgrammerServiceImpl extends LeapYear implements ProgrammerService
 
 	@Override
 	public String calculateLeapYear(int inputYear) {
-		if(inputYear < ProgrammerConstants.NEITHER_JULIAN_OR_GREGORIAN_YEAR) {
+		if(inputYear < ProgrammerConstants.CONDITION_YEAR) {
 			return isGregorianOrJulian(inputYear, checkJulianLeapYearCondition(inputYear)); 
-		} else if (inputYear > ProgrammerConstants.NEITHER_JULIAN_OR_GREGORIAN_YEAR) {
+		} else if (inputYear > ProgrammerConstants.CONDITION_YEAR) {
 			return isGregorianOrJulian(inputYear, checkGregorianLeapYearCondition(inputYear));
 		} 
 		
