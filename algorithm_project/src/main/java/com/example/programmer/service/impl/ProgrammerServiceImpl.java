@@ -18,6 +18,19 @@ public class ProgrammerServiceImpl extends LeapYear implements ProgrammerService
 	}
 	
 	/**
+	 * 그레고리력과 율리력일 때 계산 값
+	 * 
+	 * @param 입력 받은 연도 inputYear
+	 * @param 그레고리력 or 율리력 윤년 여부 isLeapYear
+	 * @return 윤년 or 윤년이 아닐때 반환값
+	 */
+	@Override
+	public String isGregorianOrJulian(int inputYear, boolean isLeapYear) {
+		return isLeapYear ? calculateLeapYearResult(inputYear, ProgrammerConstants.LEAP_YEAR) : 
+			calculateLeapYearResult(inputYear, ProgrammerConstants.NOT_LEAP_YEAR); 
+	}
+	
+	/**
 	 * 계산한 결과 반환
 	 * 
 	 * @param 입력 받은 연도 inputYear
@@ -28,15 +41,4 @@ public class ProgrammerServiceImpl extends LeapYear implements ProgrammerService
 		return fixingValue + inputYear;
 	}
 	
-	/**
-	 * 그레고리력과 율리력일 때 계산 값
-	 * 
-	 * @param 입력 받은 연도 inputYear
-	 * @param 그레고리력 or 율리력 윤년 여부 isLeapYear
-	 * @return 윤년 or 윤년이 아닐때 반환값
-	 */
-	private String isGregorianOrJulian(int inputYear, boolean isLeapYear) {
-		return isLeapYear ? calculateLeapYearResult(inputYear, ProgrammerConstants.LEAP_YEAR) : 
-			calculateLeapYearResult(inputYear, ProgrammerConstants.NOT_LEAP_YEAR); 
-	}
 }

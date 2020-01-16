@@ -1,6 +1,6 @@
 package com.example.programmer;
 
-public class LeapYear {
+public abstract class LeapYear {
 
 	/**
 	 * 그레고리력일 때 윤년 검사
@@ -30,4 +30,12 @@ public class LeapYear {
 	protected boolean checkJulianLeapYearCondition(int inputYear) {
 		return inputYear % ProgrammerConstants.FOUR == ProgrammerConstants.ZERO ? true : false;
 	}
+	
+	/**
+	 * 그레고리력과 율리력일 때 계산 값
+	 * 
+	 * @param 입력 받은 연도 inputYear
+	 * @param 그레고리력 or 율리력 윤년 여부 isLeapYear
+	 */
+	public abstract String isGregorianOrJulian(int inputYear, boolean isLeapYear);
 }
