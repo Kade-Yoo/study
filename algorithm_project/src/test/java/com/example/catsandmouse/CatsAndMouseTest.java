@@ -18,8 +18,11 @@ public class CatsAndMouseTest {
 		String answer[] = {CatsAndMouseConstants.CAT_B, CatsAndMouseConstants.MOUSE_C};
 		
 		for(int index = 0; index < inputPosition.length; index ++) {
-			catsAndMouse = new CatsAndMouse(inputPosition[index]);
-			assertThat(catsAndMouse.comparePosition()).isEqualTo(answer[index]);
+			catsAndMouse = new CatsAndMouse(
+					inputPosition[index][0]
+					,inputPosition[index][1]
+					,inputPosition[index][2]);
+			assertThat(catsAndMouse.compareDistance()).isEqualTo(answer[index]);
 		}
 	}
 }
